@@ -1,0 +1,43 @@
+.gridContainer {
+    display: inline-grid;
+    grid-template-columns: auto ;
+    width: 95vw;
+    height: 95vh;
+    grid-gap: 1px;
+  }
+
+#canvas{
+    border: 2px solid black;
+    float:left;
+}
+
+.column {
+    grid-row:2;
+    float: left;
+    width: 15vw;
+    height: 15vh;
+    padding: 4px;
+  }
+
+  #files{
+      grid-row:1;
+  }
+
+  #nextBtn{
+      grid-row:3;
+      display:flex;
+  }
+
+  #prevBtn{
+    grid-row:3;
+    display:flex;
+}
+
+  .canvasButtons{
+    display: inline-block;
+     vertical-align: middle;
+  }
+
+  .canvasHolder{
+    grid-row:3
+    }

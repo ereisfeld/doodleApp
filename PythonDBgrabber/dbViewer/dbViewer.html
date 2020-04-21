@@ -1,0 +1,35 @@
+<head>
+    <title>DB viewer</title>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+<div class="gridContainer" style="max-height: 100vh">
+    <input type="file" id="files" name="files[]" multiple />
+    <div class="gridContainer" style="max-height: 100vh">
+        <div class="row" id="imgRow">
+                <div class="column">
+                <img src="loading.jpg" id="img1" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                <img src="loading.jpg" id="img2" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                <img src="loading.jpg" id="img3" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                    <img src="loading.jpg" id="img4" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                    <img src="loading.jpg" id="img5" style="width:100%" class="eximg">
+                </div>
+        </div>
+        <div class = "canvasHolder">
+            <canvas id="canvas"></canvas>
+            <div class="canvasButtons">
+                <button id="nextBtn">Next</button>
+                <button id="prevBtn">Prev</button>
+            </div>
+</div>
+<script src="./script.js"></script>
+<script src="./canvasDrawing.js"></script>
+</body>

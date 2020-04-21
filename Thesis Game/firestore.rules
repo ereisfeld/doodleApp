@@ -1,0 +1,26 @@
+// Allow read/write access to all users under any conditions
+// Warning: **NEVER** use this rule set in production; it allows
+// anyone to overwrite your entire database.
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if true;
+//     }
+//   }
+// }
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /guesses/{sample} {
+      allow read, create : if true;
+      allow update: if request.resource.data.total == resource.data.total + 1 && (request.resource.data.right == resource.data.right + 1 || request.resource.data.wrong == resource.data.wrong + 1);
+    }
+  }
+
+    match /databases/{database}/documents {
+    match /samples/{doc} {
+      allow read, create: if true;
+    }
+  }
+}
+  

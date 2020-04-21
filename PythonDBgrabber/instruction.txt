@@ -1,0 +1,3 @@
+setenv to:
+ $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Eyal\Documents\School\Thesis\PythonDBgrabber\DoodleApp-ebd95441edcf.json"
+(with powershell)

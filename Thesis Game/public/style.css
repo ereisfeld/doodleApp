@@ -1,0 +1,128 @@
+#canvas{
+    border: 2px solid black;
+    display: none;
+    float:left
+}
+
+.canvasButtons{
+  display: inline-block;
+   vertical-align: middle;
+}
+
+.canvasHolder{
+display:none;
+grid-row:3
+}
+
+#doneDrawing{
+    display: none;
+    width:60px;
+    height:250px;
+}
+
+#undoStroke{
+  display:none;
+  width:60px;
+  height:250px;
+}
+
+#playAgain{
+    display:none;
+    grid-row:4;
+    padding: 14px 40px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#startGuessPhase{
+  display:none;
+  grid-row:4;
+  padding: 14px 40px;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.gridContainer {
+    display: inline-grid;
+    grid-template-columns: auto ;
+    width: 95vw;
+    height: 95vh;
+    grid-gap: 1px;
+  }
+
+.row{
+    display: none;
+    grid-row:2;
+}
+  
+.column {
+    grid-row:2;
+    display: none;
+    float: left;
+    width: 15vw;
+    height: 15vh;
+    padding: 4px;
+  }
+
+  .excolumn {
+    float: left;
+    max-height: 15vh;
+    max-width: 15vw;
+    padding: 10px;
+    grid-row:3
+  }
+
+  .eximg{
+    max-height: 15vh;
+    max-width: 15vw;
+    grid-row: 3
+  }
+
+  .exDoodle{
+    max-height: 17vh;
+    max-width: 17vw;
+    grid-row: 5
+  }
+
+  #message{
+      grid-row:1;
+      font-size:4vmin;
+  }
+  #message2{
+      grid-row:2;
+      font-size:4vmin;
+  }
+
+  #message3{
+      grid-row:4;
+      font-size:4vmin;
+  }
+
+  #startGame{
+      grid-row:6;
+      padding: 14px 40px;
+      background-color: #4CAF50;
+      color: white;
+      display: none;
+      border: none;
+      font-size: 20px;
+  }
+
+  #nextExample{
+    grid-row:6;
+    padding: 14px 40px;
+    background-color: #4CAF50;
+    color: white;
+    display: inline-block;
+    border: none;
+    font-size: 20px;
+}
+
+  .exBorder {   border-width: 3px;   border-color: red;   border-style: solid; } 
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

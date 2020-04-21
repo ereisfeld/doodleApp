@@ -1,0 +1,76 @@
+
+<head>
+<script src="/__/firebase/7.7.0/firebase-app.js"></script>
+<script src="/__/firebase/7.7.0/firebase-analytics.js"></script>
+<script src="/__/firebase/7.7.0/firebase-firestore.js"></script>
+<script src="/__/firebase/7.7.0/firebase-storage.js"></script>
+<script src="/__/firebase/init.js"></script>
+<title>Doodle game</title>
+<link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <div class="gridContainer" style="max-height: 100vh">
+        <div class="row" id="imgRow">
+                <div class="column">
+                  <img src="data\loading.jpg" id="img1" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                  <img src="data\loading.jpg" id="img2" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                  <img src="data\loading.jpg" id="img3" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                    <img src="data\loading.jpg" id="img4" style="width:100%" class="eximg">
+                </div>
+                <div class="column">
+                    <img src="data\loading.jpg" id="img5" style="width:100%" class="eximg">
+                </div>
+        </div>
+  
+  <h1 id="message">Instructions:</h1>
+  <h1 id="message2">-You are presented 5 pictures, and are tasked to draw the picture with the red frame. <br> Another person will then see the five pictures, and try to guess which one you drew.
+  <br> -the drawing must be as <font color="blue">minimal</font> as possible, but still allow to guess which picture was drawn.
+  <br> -given these 5 pictures, when asked to draw the red framed picture:</h1>
+  <div class="exampleRow" id="exampleImgRow">
+      <div class="excolumn">
+        <img src="data\road.jpg" id="eximg1" class="exBorder eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\basketball.jpg" id="eximg2" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\sheep2.jpg" id="eximg3" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\football.jpg" id="eximg4" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\screwdrivers.jpg" id="eximg5" class="eximg">
+      </div>
+  </div>
+  <h1 id="message3">The <font color="green">left</font> drawing is <font color="green">good</font>, it's <font color="green">minimal</font> and represents the leftmost picture clearly:
+  <br> The <font color="red">right</font> drawing is <font color="red">not good.</font> It represents the leftmost picture clearly, but has a lot of <font color="red">unnecessary details</font></h1>
+  <div class="exampleRow" id="exampleImgRow2">
+    <div class="excolumn"><img src="data\roadDoodle.PNG" id = "doodle1" class="exDoodle"></div>
+    <div class="excolumn"><img src="data\roadDoodleBad.PNG" id = "doodle2" class="exDoodle"></div>
+  </div>
+<button id="startGame">Start a new game</button>
+<button id="nextExample">Continue</button>
+<div class = "canvasHolder">
+  <canvas id="canvas"></canvas>
+  <div class="canvasButtons">
+    <button id="undoStroke">Undo</button>
+    <button id="doneDrawing">Submit</button>
+  </div>
+</div>
+<button id="playAgain">Play Again</button>
+<button id="startGuessPhase">Go</button>
+</div>
+<script src="/canvasDrawing.js"></script>
+<script src="/aux_functions.js"></script>
+<script src="/new_app.js"></script>
+
+
+
+</body>
