@@ -2,6 +2,7 @@ var db = firebase.firestore();
 var storageRef = firebase.storage().ref();
 
 const newGameButton = document.querySelector("#startGame");
+const authButtons = document.querySelector("#authButtons")
 const messageText = document.querySelector("#message");
 const submitButton = document.querySelector("#doneDrawing");
 const undoButton = document.querySelector("#undoStroke");
@@ -20,6 +21,7 @@ var guessMode = 0;
 const maxRandomValue = 10000000;
 var prevGuessMessage = "";
 var needToDownloadPics = 1;
+var totalImagesDrawn = 1;
 
 var drawData = {};
 let urlArray = [];
@@ -94,7 +96,7 @@ function initDrawMode(){
 
   function setUpDrawing(drawingNum){
     canDraw = 1;
-    messageText.innerText = "Draw the picture with the red frame minimally. Drawn "+drawingNum+ " out of "+numOfImagesToDraw;
+    messageText.innerHTML = "Draw the picture with the red frame <font color=\"14A76C\">minimally</font color>. Drawn "+drawingNum+ " out of "+numOfImagesToDraw;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawnDocIDs = [];
     if(!didImagesLoad(urlArray,drawingNum)){
@@ -111,7 +113,7 @@ function initDrawMode(){
   function setUpGuess(guessNum){
     //set source of the 5 images to the urls of the current guess, and setup onClick behaivor, urls were already downloaded in initGuess
     clickIsPossible = 1;
-    messageText.innerText = "Click the correct picture. Guess "+curGuesses+ " out of "+totalNumOfGussingRounds+ ". "+prevGuessMessage;
+    messageText.innerHTML = "Click the correct picture. Guess "+curGuesses+ " out of "+totalNumOfGussingRounds+ ". "+prevGuessMessage;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if(!didImagesLoad(urlArrayGuesses,guessNum)){
       messageText.innerText = "Loading images, please wait";
@@ -131,6 +133,7 @@ function initDrawMode(){
     drawData["timeStamp"] = firebase.firestore.FieldValue.serverTimestamp();
     drawData["random"] = Math.random()*maxRandomValue;
     drawData["images"] = {0:urlArray[round][0],1:picIdArray[round][0],2:picIdArray[round][1],3:picIdArray[round][2],4:picIdArray[round][3],5:picIdArray[round][4]};
+    drawData["imageSubmissionOrder"] = totalImagesDrawn
 
     try{
         var sampleDoc = db.collection("samples").doc();
@@ -146,6 +149,7 @@ function initDrawMode(){
     }
     currentDrawing = []
     curDrawnImages++;
+    totalImagesDrawn++;
 
     if(curDrawnImages == numOfImagesToDraw){
         console.log("submitted final drawing, initializing guess mode");
@@ -164,12 +168,12 @@ function submitGuess(picNumber){
       console.log("error updating doc with id: "+guessDocId.toString()+" error: "+error);
     }
   if(picNumber == correctGuess){
-      prevGuessMessage = "Previous guess was correct! ";
+      prevGuessMessage = "Previous guess was <font color=\"14A76C\">correct!</font color> ";
       db.collection("guesses").doc(guessDocId).update({right : increment,total: increment}).catch(errorFunc)
       numOfCorrectGuesses++;
   }
   else{
-      prevGuessMessage = "Previous guess was incorrect! ";
+      prevGuessMessage = "Previous guess was <font color=\"FF652F\">incorrect!</font color> ";
       db.collection("guesses").doc(guessDocId).update({wrong : increment,total: increment}).catch(errorFunc)
   }
   //db.collection("guesses").doc(guessDocId).update({total : increment}).catch(errorFunc)
@@ -193,7 +197,8 @@ function gameLogic(){
 }
 
 var nextExampleButtonClick = function(){
-    newGameButton.style.display = "inline-block";
+    //newGameButton.style.display = "inline-block";
+    authButtons.style.display = "inline-block"
     nextExampleButton.style.display = "none";
     document.querySelector("#doodle1").src = "data\\exfootball.PNG";
     document.querySelector("#doodle2").src = "data\\exfootballBad.png";

@@ -1,6 +1,7 @@
   var db = firebase.firestore();
   // Get a reference to the database service
   const searchButton = document.querySelector("#lookForGame");
+  const authButtons = document.querySelector("#authButtons")
   const messageText = document.querySelector("#message");
   const collectionRef = db.collection("waitingForGame");
   var docRef = collectionRef.doc("imLooking");

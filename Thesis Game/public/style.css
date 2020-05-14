@@ -1,7 +1,8 @@
 #canvas{
     border: 2px solid black;
     display: none;
-    float:left
+    float:left;
+    background: #747474;
 }
 
 .canvasButtons{
@@ -18,28 +19,32 @@ grid-row:3
     display: none;
     width:60px;
     height:250px;
+    background-color: #14A76C;
+    color: #272727;
 }
 
 #undoStroke{
   display:none;
   width:60px;
   height:250px;
+  background-color: #14A76C;
+  color: #272727;
 }
 
 #playAgain{
     display:none;
     grid-row:4;
     padding: 14px 40px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #FFE400;
+    color: #272727;
 }
 
 #startGuessPhase{
   display:none;
   grid-row:4;
   padding: 14px 40px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #FFE400;
+  color: #272727;
 }
 
 .gridContainer {
@@ -86,23 +91,23 @@ grid-row:3
 
   #message{
       grid-row:1;
-      font-size:4vmin;
+      font-size:3.5vmin;
   }
   #message2{
       grid-row:2;
-      font-size:4vmin;
+      font-size:3.5vmin;
   }
 
   #message3{
       grid-row:4;
-      font-size:4vmin;
+      font-size:3.5vmin;
   }
 
   #startGame{
       grid-row:6;
       padding: 14px 40px;
-      background-color: #4CAF50;
-      color: white;
+      background-color: #FFE400;
+      color: #272727;
       display: none;
       border: none;
       font-size: 20px;
@@ -111,8 +116,8 @@ grid-row:3
   #nextExample{
     grid-row:6;
     padding: 14px 40px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #FFE400;
+    color: #272727;
     display: inline-block;
     border: none;
     font-size: 20px;
@@ -125,4 +130,22 @@ grid-row:3
     content: "";
     clear: both;
     display: table;
+  }
+
+  body {
+    background-color:#272727;
+  }
+
+  h1 {
+    color: #747474;
+    font-family: sans-serif; 
+  }
+
+  p {
+    text-align: center;
+    color: #747474;
+  }
+
+  #authButtons{
+    display:none
   }

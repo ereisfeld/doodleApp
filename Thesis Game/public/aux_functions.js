@@ -117,7 +117,7 @@ function changeImagesToLoading(){
     msg2.style.display = "block"
     msg3.style.display = "block";
     messageText.innerText = "We've added the 5 images you've drawn into the database."
-    msg2.innerText = "You are now entering the guessing phase. You will be shown 5 images and a sketch. Click on the picture that looks the most like the drawing."
+    msg2.innerText = "You are now entering the guessing phase. You will be shown 5 images and a sketch. Click on the picture that looks the most like the sketch."
     msg3.innerText = "You will need to do so "+totalNumOfGussingRounds.toString()+" times. Good luck!";
     startGuessPhase.style.display = "block";
     changeImagesToLoading()
