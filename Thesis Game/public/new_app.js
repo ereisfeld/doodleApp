@@ -40,6 +40,7 @@ function initDrawMode(){
     guessMode = 0;
     curDrawnImages = 0;
     const picturesRow = document.querySelector("#imgRow");
+    document.querySelector("#exampleImgRow2").style.display = "none";
     picturesRow.style.display = "block"
     const canvasHolder = document.getElementsByClassName("canvasHolder")[0];
     const newGame = document.querySelector("#startGame");
@@ -134,6 +135,7 @@ function initDrawMode(){
     drawData["random"] = Math.random()*maxRandomValue;
     drawData["images"] = {0:urlArray[round][0],1:picIdArray[round][0],2:picIdArray[round][1],3:picIdArray[round][2],4:picIdArray[round][3],5:picIdArray[round][4]};
     drawData["imageSubmissionOrder"] = totalImagesDrawn
+    drawData["exampleScore"] = numberOfExamplesRight;
 
     try{
         var sampleDoc = db.collection("samples").doc();
@@ -196,19 +198,7 @@ function gameLogic(){
     }
 }
 
-var nextExampleButtonClick = function(){
-    //newGameButton.style.display = "inline-block";
-    authButtons.style.display = "inline-block"
-    nextExampleButton.style.display = "none";
-    document.querySelector("#doodle1").src = "data\\exfootball.PNG";
-    document.querySelector("#doodle2").src = "data\\exfootballBad.png";
-    document.querySelector("#eximg1").className = "eximg";
-    document.querySelector("#eximg4").className = "exBorder eximg";
-    document.querySelector("#message2").innerText = "Example 2:";
-    document.querySelector("#message3").innerHTML = "The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is a football, rather than a basketball.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed football:"
-    downloadDrawingImages(numOfImagesToDraw);
-    needToDownloadPics = 0;
-}
+
 
 newGameButton.addEventListener("click",function(){initDrawMode()});
 submitButton.addEventListener("click",function(){submitDrawing()});

@@ -1,6 +1,7 @@
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var userName = "notConnected";
 var userMail = "notConnected";
+var userSignedIn = 0;
 
 var uiConfig = {
   callbacks: {
@@ -11,8 +12,10 @@ var uiConfig = {
       console.log(authResult)
       userName = authResult['user']['displayName']
       userMail = authResult['user']['email']
-      document.querySelector("#startGame").style.display = "inline-block";
+      //document.querySelector("#startGame").style.display = "inline-block";
       document.querySelector("#authButtons").style.display = "none";
+      goToFirstInteactiveExample();
+
       return false; //false means don't redirect
     },
     uiShown: function() {
@@ -32,3 +35,16 @@ var uiConfig = {
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);
+
+firebase.auth().onAuthStateChanged(function(user) {
+  console.log("auth changed fired");
+  if (user) {
+    // User is signed in.
+    userName = user.displayName;
+    userMail = user.email;
+    userSignedIn = 1;
+  } else {
+    // User is signed out.
+    // ...
+  }
+});

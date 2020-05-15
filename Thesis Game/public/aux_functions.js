@@ -298,5 +298,4 @@ function ShowDrawingImages(round){
       var lstOfElements = [imgElement1,imgElement2,imgElement3,imgElement4,imgElement5];
       lstOfElements[urlArray[round][0]].style.border = "thick solid red";
 
-
 }

@@ -33,8 +33,7 @@
   
   <h1 id="message" style ="margin:0"><center>Instructions</center></h1>
   <h1 id="message2" style ="margin:0">-Given 5 pictures, draw the picture with the red frame. <br> Another person will then see the 5 pictures, and try to guess which one you drew.
-  <br> -the drawing must be as <font color="#FFE400">minimal</font> as possible, but still allow to guess which picture was drawn.
-  <br>For example:<br>given these 5 pictures, when asked to draw the red framed picture:</h1>
+  <br> -the drawing must be as <font color="#FFE400">minimal</font> as possible, but still allow to guess which picture was drawn.</h1>
   <div class="exampleRow" id="exampleImgRow">
       <div class="excolumn">
         <img src="data\road.jpg" id="eximg1" class="exBorder eximg">
@@ -57,6 +56,7 @@
   <div class="exampleRow" id="exampleImgRow2">
     <div class="excolumn"><img src="data\roadDoodle.PNG" id = "doodle1" class="exDoodle"></div>
     <div class="excolumn"><img src="data\roadDoodleBad.PNG" id = "doodle2" class="exDoodle"></div>
+    <div class="excolumn"><img src="data\loading.jpg" id = "doodle3" class="exDoodle"></div>
   </div>
   <div id="authButtons">
     <p>To play, please login.</p>
@@ -64,7 +64,9 @@
     <div id="loader">Loading...</div>
   </div>
 <button id="startGame">Start a new game</button>
-<button id="nextExample">Continue</button>
+<button id="nextExample">Got it</button>
+<button id="firstExample">OK</button>
+<button id="secondInterExBtn">Go to next example</button>
 <div class = "canvasHolder">
   <canvas id="canvas"></canvas>
   <div class="canvasButtons">
@@ -78,6 +80,7 @@
 <script src="/canvasDrawing.js"></script>
 <script src="/authCode.js"></script>
 <script src="/aux_functions.js"></script>
+<script src="/examples.js"></script>
 <script src="/new_app.js"></script>
 
 </body>
