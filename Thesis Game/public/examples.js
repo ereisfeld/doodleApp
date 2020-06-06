@@ -1,4 +1,30 @@
-var numberOfExamplesRight = 0;
+var numberOfExamplesRight= 0;
+var language = "english"
+const imgsPerRound = 2;
+
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function initHebrew(){
+  if(language == "hebrew"){
+    document.querySelector("#message").innerHTML = "<center>הוראות</center>";
+    document.querySelector("#message2").innerHTML =     document.querySelector("#message2").innerHTML = "<center>יוצגו לכם " + imgsPerRound + " תמונות. בבקשה ציירו את התמונה שמוקפת במסגרת אדומה. <br> אדם אחר יראה את " + imgsPerRound +" התמונות, וינסה לנחש איזה מהן ציירתם <br><br> הציור שלכם צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר לנחש מה ציירתם</center>";
+    document.querySelector("#loginMsg").innerHTML = "כדי לשחק, בבקשה התחבר"
+    document.querySelector("#secondInterExBtn").innerHTML = "לדוגמא הבאה";
+    document.querySelector("#doneDrawing").innerHTML = "שלח";
+    document.querySelector("#undoStroke").innerHTML = "מחק"
+  }
+}
+
+language = getParameterByName("lang");
+initHebrew();
 
 var nextExampleButtonClick = function(){
     //newGameButton.style.display = "inline-block";
@@ -14,9 +40,16 @@ var nextExampleButtonClick = function(){
     document.querySelector("#doodle2").src = "data\\exfootballBad.png";
     document.querySelector("#eximg1").className = "eximg";
     document.querySelector("#eximg4").className = "exBorder eximg";
-    document.querySelector("#message").innerText = "Example 2:";
-    document.querySelector("#message3").innerHTML = "The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is a football, rather than a basketball.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed football:"
-    downloadDrawingImages(numOfImagesToDraw);
+    document.querySelector("#message").innerHTML = "<center>Example 2:</example>";
+    document.querySelector("#message3").innerHTML = "<center>The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is a football, rather than a basketball.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed football:</example>"
+    if(language == "hebrew"){
+      document.querySelector("#message").innerHTML = "<center>דוגמא 2</example>";
+      document.querySelector("#message3").innerHTML = "<center> הציור <font color=\"#FF652F\">הימני</font> הוא <font color=\"#FF652F\">לא טוב</font> . אין בו מספיק מידע בשביל לקבוע שהתמונה המסומנת היא כדורגל, ולא כדורסל. <br> הציור <font color=\"#14A76C\">השמאלי</font> הוא <font color=\"#14A76C\">טוב.</font> הוא יצוג <font color=\"#14A76C\">מינימלי</font> שמאפשר להבחין שהתמונה במסגרת האדומה היא כדורגל.</center>"
+      if(userSignedIn){
+        document.querySelector("#startGame").innerText =  " מחובר. התחל משחק "+userName;
+    }
+    }
+    downloadDrawingImages(numOfDrawingRounds);
     needToDownloadPics = 0;
 }
 
@@ -31,15 +64,23 @@ var goToFirstExample = function(){
   all[i].style.display = "inline-block";
   }
   document.querySelector("#message3").style.display = "inline"
-  document.querySelector("#message").innerHTML = "example 1:<br>given these 5 pictures, when asked to draw the red framed picture"
+  document.querySelector("#message").innerHTML = "<center>example 1:<br>given these 5 pictures, when asked to draw the red framed picture</center>"
+  if(language == "hebrew"){
+    document.querySelector("#message").innerHTML = "<center>דוגמא 1 <br> בהינתן חמש התמונות הבאות, כאשר אתם מתבקשים לצייר את התמונה עם המסגרת האדומה:"
+    document.querySelector("#message3").innerHTML = "<center>הציור <font color=\"#14A76C\">השמאלי</font>  הוא <font color=\"#14A76C\">טוב</font>. הוא <font color=\"#14A76C\">מינימלי</font> ומייצג את התמונה השמאלית ביותר בבירור. <br> הציור <font color=\"#FF652F\">הימני</font>  הוא <font color=\"#FF652F\">לא טוב</font>. הוא מייצג את התמונה השמאלית ביותר בבירור, אבל מכיל הרבה <font color=\"#FF652F\">פרטים מיותרים</font></center>"
+    document.querySelector("#nextExample").innerText = "הבנתי"
+  }
   document.querySelector("#message2").style.display = "none";
   nextExampleButton.style.display = "inline-block"
   document.querySelector("#firstExample").style.display = "none";
 }
 
 var goToFirstInteactiveExample = function(){
-  document.querySelector("#message").innerHTML = "Which sketch best represents the picture with the red frame? <br> The representation must be both <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn."
-
+  document.querySelector("#message").innerHTML = "<center>Which sketch best represents the picture with the red frame? <br> The representation must be <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
+  if(language == "hebrew"){
+    document.querySelector("#message").innerHTML = "<center>איזה מהיצוגים הבאים מייצג את התמונה עם המסגרת האדומה ?<br> היצוג צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
+  }
+    
   let doodle1 = document.querySelector("#doodle1")
   let doodle2 = document.querySelector("#doodle2")
   let doodle3 = document.querySelector("#doodle3")
@@ -74,7 +115,10 @@ var goToFirstInteactiveExample = function(){
   var imgElement5 = document.querySelector("#eximg5");
   imgElement5.style.display = "none";
 
-  document.querySelector("#message3").innerText = "Please click on the correct sketch";
+  document.querySelector("#message3").innerHTML = "<center>Please click on the correct sketch</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML = "<center>בבקשה לחצו על הציור הנכון</center>"
+  }
 }
 
 var clickSketchSecondExample = function(){
@@ -94,39 +138,60 @@ var clickSketchFirstExample = function(){
 }
 
 var clickSketch11 = function(){
-  document.querySelector("#message3").innerHTML = "<font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the two cereal bowls.";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the two cereal bowls.</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין שתי הקערות.</center>";
+  }
   clickSketchFirstExample();
 }
 
 var clickSketch12 = function(){
   numberOfExamplesRight++;
-  document.querySelector("#message3").innerHTML = "<font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between the two bowls, without adding too many unnecessary details";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between the two bowls, without adding too many unnecessary details</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML ="<center><font color=\"#14A76C\">נכון. </font> הציור מספיק מספיק כדי להבחין בין שתי הקערות, בלי להכיל יותר מדי פרטים מיותרים.</center>"
+  }
   clickSketchFirstExample();
 }
 var clickSketch13 = function(){
-  document.querySelector("#message3").innerHTML = "<font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has a lot of unnecessary details.";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has a lot of unnecessary details.</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML ="<center><font color=\"#FF652F\">לא נכון </font> הציור מייצג את התמונה הנכונה, אבל כולל הרבה פרטים מיותרים</center>"
+  }
   clickSketchFirstExample();
 }
 
 var clickSketch21 = function(){
-  document.querySelector("#message3").innerHTML = "<font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the bread and the dollar bill.";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the bread and the dollar bill.</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין השטר של הדולר, לבין הלחם</center>"
+  }
   clickSketchSecondExample();
 }
 
 var clickSketch23 = function(){
   numberOfExamplesRight++;
-  document.querySelector("#message3").innerHTML = "<font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between all of the pictures, without adding too many unnecessary details";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between all of the pictures, without adding too many unnecessary details</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">נכון. </font> הציור מספיק מספיק כדי להבדיל בין כל הציורים, בלי להכיל יותר מדי פרטים מיותרים.</center>"
+  }
   clickSketchSecondExample();
 }
 var clickSketch22 = function(){
-  document.querySelector("#message3").innerHTML = "<font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has some unnecessary details.";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has some unnecessary details.</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerHTML ="<center><font color=\"#FF652F\">לא נכון </font> הציור מייצג את התמונה הנכונה, אבל כולל הרבה פרטים מיותרים</center>"
+  }
   clickSketchSecondExample();
 }
 
 var goToSecondInteractiveExample = function(){
   document.querySelector("#secondInterExBtn").style.display = "none";
 
-  document.querySelector("#message").innerHTML = "Which sketch best represents the picture with the red frame? <br> The representation must be both <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn."
+  document.querySelector("#message").innerHTML = "<center>Which sketch best represents the picture with the red frame? <br> The representation must be both <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
+  if(language == "hebrew"){
+    document.querySelector("#message").innerHTML = "<center>איזה מהיצוגים הבאים מייצג את התמונה עם המסגרת האדומה ?<br> היצוג צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
+  }
 
   let doodle1 = document.querySelector("#doodle1")
   let doodle2 = document.querySelector("#doodle2")
@@ -162,7 +227,10 @@ var goToSecondInteractiveExample = function(){
   var imgElement5 = document.querySelector("#eximg5");
   imgElement5.style.display = "none";
 
-  document.querySelector("#message3").innerText = "Please click on the correct sketch";
+  document.querySelector("#message3").innerText = "<center>Please click on the correct sketch</center>";
+  if(language == "hebrew"){
+    document.querySelector("#message3").innerText = "<center>בבקשה לחצו על הציור הנכון</center>"
+  }
 }
 
 

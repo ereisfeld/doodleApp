@@ -1,0 +1,86 @@
+
+<head>
+<script src="/__/firebase/7.7.0/firebase-app.js"></script>
+<script src="/__/firebase/7.7.0/firebase-analytics.js"></script>
+<script src="/__/firebase/7.7.0/firebase-firestore.js"></script>
+<script src="/__/firebase/7.7.0/firebase-storage.js"></script>
+<script src="/__/firebase/init.js"></script>
+<script src="/__/firebase/7.14.3/firebase-auth.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+<title>Doodle game</title>
+<link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <div class="gridContainer" style="max-height: 100vh; max-width: 100vw">
+        <div class="row" id="imgRow">
+                <div class="column">
+                  <img src="data\loading.jpg" id="img1" style="max-width:100%; max-height:100%" class="img">
+                </div>
+                <div class="column">
+                  <img src="data\loading.jpg" id="img2" style="max-width:100%; max-height:100%" class="img">
+                </div>
+                <div class="column">
+                  <img src="data\loading.jpg" id="img3" style="max-width:100%; max-height:100%" class="img">
+                </div>
+                <div class="column">
+                    <img src="data\loading.jpg" id="img4" style="max-width:100%; max-height:100%" class="img">
+                </div>
+                <div class="column">
+                    <img src="data\loading.jpg" id="img5" style="max-width:100%; max-height:100%" class="img">
+                </div>
+        </div>
+  
+  <h1 id="message" style ="margin:0"><center>Instructions</center></h1>
+  <h1 id="message2" style ="margin:0"><center>-You will be shown 5 pictures, please draw the picture with the red frame. <br> Another person will then see the 5 pictures, and try to guess which one you drew.
+  <br><br> -the drawing must be as <font color="#FFE400">minimal</font> as possible, but still allow to guess which picture was drawn.</center></h1>
+  <div class="exampleRow" id="exampleImgRow">
+      <div class="excolumn">
+        <img src="data\road.jpg" id="eximg1" class="exBorder eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\basketball.jpg" id="eximg2" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\sheep2.jpg" id="eximg3" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\football.jpg" id="eximg4" class="eximg">
+      </div>
+      <div class="excolumn">
+        <img src="data\screwdrivers.jpg" id="eximg5" class="eximg">
+      </div>
+  </div>
+  <h1 id="message3">The <font color="#14A76C">left</font> drawing is <font color="14A76C">good</font>, it's <font color="14A76C">minimal</font> and represents the leftmost picture clearly:
+  <br> The <font color="#FF652F">right</font> drawing is <font color="#FF652F">not good.</font> It represents the leftmost picture clearly, but has a lot of <font color="#FF652F">unnecessary details</font></h1>
+  <div class="exampleRow" id="exampleImgRow2">
+    <div class="excolumn"><img src="data\roadDoodle.PNG" id = "doodle1" class="exDoodle"></div>
+    <div class="excolumn"><img src="data\roadDoodleBad.PNG" id = "doodle2" class="exDoodle"></div>
+    <div class="excolumn"><img src="data\loading.jpg" id = "doodle3" class="exDoodle"></div>
+  </div>
+  <div id="authButtons">
+    <p id ="loginMsg">To play, please login.</p>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+  </div>
+<button id="startGame">Start a new game</button>
+<button id="nextExample">Got it</button>
+<button id="firstExample">OK</button>
+<button id="secondInterExBtn">Go to next example</button>
+<div class = "canvasHolder">
+  <canvas id="canvas"></canvas>
+  <div class="canvasButtons">
+    <button id="undoStroke">Undo</button>
+    <button id="doneDrawing">Submit</button>
+  </div>
+</div>
+<button id="playAgain">Play Again</button>
+<button id="startGuessPhase">Go</button>
+</div>
+<script src="/canvasDrawing.js"></script>
+<script src="/authCode.js"></script>
+<script src="/aux_functions.js"></script>
+<script src="/examples.js"></script>
+<script src="/new_app.js"></script>
+
+</body>

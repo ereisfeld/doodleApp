@@ -64,8 +64,6 @@ grid-row:3
     grid-row:2;
     display: none;
     float: left;
-    width: 15vw;
-    height: 15vh;
     padding: 4px;
   }
 
@@ -82,6 +80,14 @@ grid-row:3
     max-width: 15vw;
     grid-row: 3;
     display:none
+  }
+
+  .img{
+    grid-row: 3;
+  }
+
+  #imgRow{
+    display:none;
   }
 
   .exDoodle{

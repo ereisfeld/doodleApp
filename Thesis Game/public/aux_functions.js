@@ -96,6 +96,12 @@ function changeImagesToLoading(){
     msg2.style.display = "block"
     messageText.innerText = "Thanks for playing!"
     msg2.innerText = "You got "+numOfCorrectGuesses.toString()+ " guesses right, out of "+totalNumOfGussingRounds;
+    if(language == "hebrew"){
+    messageText.innerText = "תודה ששיחקת!"
+    msg2.innerText = "ניחשת " + numOfCorrectGuesses.toString() +" ניחושים נכון, מתוך " + totalNumOfGussingRounds
+    playAgainButton.innerText = "שחק שוב"
+    }
+
     playAgainButton.style.display = "block";
     changeImagesToLoading()
     curGuesses = 0;
@@ -116,9 +122,14 @@ function changeImagesToLoading(){
     var msg3 = document.querySelector("#message3");
     msg2.style.display = "block"
     msg3.style.display = "block";
-    messageText.innerText = "We've added the 5 images you've drawn into the database."
-    msg2.innerText = "You are now entering the guessing phase. You will be shown 5 images and a sketch. Click on the picture that looks the most like the sketch."
-    msg3.innerText = "You will need to do so "+totalNumOfGussingRounds.toString()+" times. Good luck!";
+    messageText.innerHTML = "<center>We've added the "+numOfDrawingRounds+ " images you've drawn into the database.</center>"
+    msg2.innerHTML = "<center>You are now entering the guessing phase. You will be shown "+imgsPerRound+" images and a sketch. Click on the picture that looks the most like the sketch.</ceter>"
+    msg3.innerHTML = "<center>You will need to do so "+totalNumOfGussingRounds.toString()+" times. Good luck!</center>";
+    if(language == "hebrew"){
+      messageText.innerHTML = "<center>הוספנו את "+ numOfDrawingRounds +" התמונות שציירת למאגר הנתונים.</center>"
+      msg2.innerHTML = "<center>אתם נכנסים עכשיו לשלב הניחושים. יוצגו לכם " +imgsPerRound+ " תמונות וציור. לחצו על התמונה שהכי דומה לציור.</center>"
+      msg3.innerHTML ="<center> תצטרכו לעשות זאת " + totalNumOfGussingRounds.toString() + "פעמים. בהצלחה ! </center>"
+    }
     startGuessPhase.style.display = "block";
     changeImagesToLoading()
     
@@ -149,9 +160,9 @@ function changeImagesToLoading(){
       exampleDoodle2.style.display = "none";
   }
 
-  function generate5UniqueNumbers(min,max){
+  function generateUniqueNumbers(min,max,num){
     var arr = [];
-    while(arr.length < 5){
+    while(arr.length < num){
       var rnd = Math.floor(Math.random() * max) + min;
       if(arr.indexOf(rnd) === -1) arr.push(rnd);
   }
@@ -219,8 +230,11 @@ function select5Guesses(){
 
 function downloadGuessingImages(rounds){
   for(var i=0; i<rounds; i++){
-    var curUrls = [guessesDataArray[i].data()["images"][0],-1,-1,-1,-1,-1] //this is the correct guess
-    for(var j=1; j<=5; j++){
+    var curUrls = [guessesDataArray[i].data()["images"][0]] //this is the correct guess
+    for(var a=0; a<imgsPerRound; a++){
+      curUrls.push(-1);
+    }
+    for(var j=1; j<=imgsPerRound; j++){
       downloadSetIMG(guessesDataArray[i].data()["images"][j],curUrls,j);
     }
     urlArrayGuesses.push(curUrls);
@@ -230,9 +244,12 @@ function downloadGuessingImages(rounds){
 
 function downloadDrawingImages(rounds){
   for(var i=0;i<rounds;i++){
-    var picIndexes = generate5UniqueNumbers(1,1000);
-    var curUrls = [Math.floor(Math.random()*5),-1,-1,-1,-1,-1];
-    for(var j=0; j<5; j++){
+    var picIndexes = generateUniqueNumbers(1,1000,imgsPerRound);
+    var curUrls = [Math.floor(Math.random()*imgsPerRound)];
+    for(var a=0; a<imgsPerRound; a++){
+      curUrls.push(-1);
+    }
+    for(var j=0; j<imgsPerRound; j++){
       downloadSetIMG(picIndexes[j],curUrls,j+1);
     }
     urlArray.push(curUrls);
@@ -243,59 +260,47 @@ function downloadDrawingImages(rounds){
 function showGuessingImages(round){
   var row = document.querySelector("#imgRow");
   var colElement = row.getElementsByClassName("column");
-  for (var i=0;i<colElement.length; i++){
+  var i=0;
+  var lstOfElements = []
+  for (i;i<imgsPerRound; i++){
     colElement[i].style.display = "block";
+    var imgElement = document.querySelector("#img"+(i+1).toString());
+    imgElement.style.border = "none"
+    imgElement.src = urlArrayGuesses[round][i+1];
+    imgElement.style.maxheight = (100/imgsPerRound - 5).toString() + "%";
+    imgElement.style.maxWidth = (100/imgsPerRound -5).toString() + "%";
+    lstOfElements.push(imgElement);
   }
-  var imgElement1 = document.querySelector("#img1");
-  imgElement1.style.border = "none";
-  imgElement1.src = urlArrayGuesses[round][1];
-
-  var imgElement2 = document.querySelector("#img2");
-  imgElement2.style.border = "none";
-  imgElement2.src = urlArrayGuesses[round][2];
-
-  var imgElement3 = document.querySelector("#img3");
-  imgElement3.style.border = "none";
-  imgElement3.src = urlArrayGuesses[round][3];
-
-  var imgElement4 = document.querySelector("#img4");
-  imgElement4.style.border = "none";
-  imgElement4.src = urlArrayGuesses[round][4];
-
-  var imgElement5 = document.querySelector("#img5");
-  imgElement5.style.border = "none";
-  imgElement5.src = urlArrayGuesses[round][5];
-
+  for (i;i<colElement.length; i++){
+    colElement[i].style.display = "none";
+  }
   correctGuess = urlArrayGuesses[round][0];
 }
 
 function ShowDrawingImages(round){
     var row = document.querySelector("#imgRow");
     var colElement = row.getElementsByClassName("column");
-    for (var i=0;i<colElement.length; i++){
+    var i=0;
+    var lstOfElements = []
+    for (i;i<imgsPerRound; i++){
       colElement[i].style.display = "block";
+      var imgElement = document.querySelector("#img"+(i+1).toString());
+      imgElement.style.border = "none"
+      imgElement.src = urlArray[round][i+1];
+      var aspectRatio =  originalImagesSizeHeight / originalImagesSizeWidth
+      colElement[i].style.height = Math.min(document.documentElement.clientHeight - canvas.height - 70,0.3*document.documentElement.clientHeight);
+      colElement[i].style.width = parseInt(colElement[i].style.height) * (1/aspectRatio)
+      if(parseInt(colElement[i].style.width) > document.documentElement.clientWidth/imgsPerRound){
+        console.log("adjusting according to width");
+        colElement[i].style.width = document.documentElement.clientWidth/imgsPerRound -50; 
+        colElement[i].style.height = aspectRatio *  parseInt(colElement[i].style.width)
+      }
+      //colElement[i].style.width = ((100/imgsPerRound/100 - 0.05)*document.documentElement.clientWidth) ;
+      lstOfElements.push(imgElement);
     }
-      var imgElement1 = document.querySelector("#img1");
-      imgElement1.style.border = "none";
-      imgElement1.src = urlArray[round][1];
-  
-      var imgElement2 = document.querySelector("#img2");
-      imgElement2.style.border = "none";
-      imgElement2.src = urlArray[round][2];
-  
-      var imgElement3 = document.querySelector("#img3");
-      imgElement3.style.border = "none";
-      imgElement3.src = urlArray[round][3];
-  
-      var imgElement4 = document.querySelector("#img4");
-      imgElement4.style.border = "none";
-      imgElement4.src = urlArray[round][4];
-  
-      var imgElement5 = document.querySelector("#img5");
-      imgElement5.style.border = "none";
-      imgElement5.src = urlArray[round][5];
-  
-      var lstOfElements = [imgElement1,imgElement2,imgElement3,imgElement4,imgElement5];
+    for (i;i<colElement.length; i++){
+      colElement[i].style.display = "none";
+    }
       lstOfElements[urlArray[round][0]].style.border = "thick solid red";
 
 }
