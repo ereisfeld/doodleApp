@@ -1,6 +1,6 @@
 var numberOfExamplesRight= 0;
 var language = "english"
-const imgsPerRound = 2;
+const imgsPerRound = 3;
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -53,15 +53,22 @@ var nextExampleButtonClick = function(){
     needToDownloadPics = 0;
 }
 
+function resizeExampleImage(element,numOfPics){
+  console.log("resizing pic")
+  var pic1 = document.querySelector("#eximg1");
+  var picRatio = pic1.naturalHeight / pic1.naturalWidth
+  element.style.maxWidth = (document.documentElement.clientWidth/numOfPics -35)/document.documentElement.clientWidth * 100+"vw"; 
+}
+
 var goToFirstExample = function(){
-  var all = document.getElementsByClassName('exDoodle');
-  for (var i = 0; i < all.length; i++) {
-  all[i].style.display = "inline-block";
-  }
+  document.querySelector("#exampleImgRow").style.display = "block";
+  document.querySelector("#exampleImgRow2").style.display = "block";
   document.querySelector("#doodle3").style.display ="none";
-  all = document.getElementsByClassName('eximg');
+  document.querySelector("#screwdriversSlot").style.display = "none"; //hide screwdriver photo
+  all = document.getElementsByClassName('excolumn');
+  const numOfExamplePics = 4;
   for (var i = 0; i < all.length; i++) {
-  all[i].style.display = "inline-block";
+    resizeExampleImage(all[i],numOfExamplePics)
   }
   document.querySelector("#message3").style.display = "inline"
   document.querySelector("#message").innerHTML = "<center>example 1:<br>given these 5 pictures, when asked to draw the red framed picture</center>"
@@ -227,9 +234,9 @@ var goToSecondInteractiveExample = function(){
   var imgElement5 = document.querySelector("#eximg5");
   imgElement5.style.display = "none";
 
-  document.querySelector("#message3").innerText = "<center>Please click on the correct sketch</center>";
+  document.querySelector("#message3").innerHTML = "<center>Please click on the correct sketch</center>";
   if(language == "hebrew"){
-    document.querySelector("#message3").innerText = "<center>בבקשה לחצו על הציור הנכון</center>"
+    document.querySelector("#message3").innerHTML = "<center>בבקשה לחצו על הציור הנכון</center>"
   }
 }
 

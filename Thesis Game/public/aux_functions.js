@@ -146,10 +146,16 @@ function changeImagesToLoading(){
     console.log("hiding tutorial elements")
     var row = document.getElementById("exampleImgRow");
     row.style.display = "none";
-    var colElement = row.getElementsByClassName("excolumn");
+    var row2 = document.getElementById("exampleImgRow2");
+    row2.style.display = "none";
+    /*var colElement = row.getElementsByClassName("excolumn");
     for (var i=0;i<colElement.length; i++){
       colElement[i].style.display = "none";
     }
+    var colElement2 = row.getElementsByClassName("excolumnDoodle");
+    for (var i=0;i<colElement.length; i++){
+      colElement[i].style.display = "none";
+    }*/
       var msg2 = document.querySelector("#message2");
       var msg3 = document.querySelector("#message3");
       msg2.style.display = "none";
@@ -257,6 +263,19 @@ function downloadDrawingImages(rounds){
   }
 }
 
+function resizeImage(element){
+  var aspectRatio =  originalImagesSizeHeight / originalImagesSizeWidth
+  var wantedWidth = (document.documentElement.clientWidth/imgsPerRound -35) 
+  var expectedHeight = wantedWidth * aspectRatio
+  if(expectedHeight>document.documentElement.clientHeight - canvas.height - 70){
+    console.log("height too large. scaling according to height")
+    element.style.height = (document.documentElement.clientHeight - canvas.height - 70)/document.documentElement.clientHeight*100+"vh";
+  }
+  else{
+    element.style.width = (document.documentElement.clientWidth/imgsPerRound -35)/document.documentElement.clientWidth * 100+"vw"; 
+  }
+}
+
 function showGuessingImages(round){
   var row = document.querySelector("#imgRow");
   var colElement = row.getElementsByClassName("column");
@@ -267,8 +286,7 @@ function showGuessingImages(round){
     var imgElement = document.querySelector("#img"+(i+1).toString());
     imgElement.style.border = "none"
     imgElement.src = urlArrayGuesses[round][i+1];
-    imgElement.style.maxheight = (100/imgsPerRound - 5).toString() + "%";
-    imgElement.style.maxWidth = (100/imgsPerRound -5).toString() + "%";
+    resizeImage(colElement[i])
     lstOfElements.push(imgElement);
   }
   for (i;i<colElement.length; i++){
@@ -287,15 +305,7 @@ function ShowDrawingImages(round){
       var imgElement = document.querySelector("#img"+(i+1).toString());
       imgElement.style.border = "none"
       imgElement.src = urlArray[round][i+1];
-      var aspectRatio =  originalImagesSizeHeight / originalImagesSizeWidth
-      colElement[i].style.height = Math.min(document.documentElement.clientHeight - canvas.height - 70,0.3*document.documentElement.clientHeight);
-      colElement[i].style.width = parseInt(colElement[i].style.height) * (1/aspectRatio)
-      if(parseInt(colElement[i].style.width) > document.documentElement.clientWidth/imgsPerRound){
-        console.log("adjusting according to width");
-        colElement[i].style.width = document.documentElement.clientWidth/imgsPerRound -50; 
-        colElement[i].style.height = aspectRatio *  parseInt(colElement[i].style.width)
-      }
-      //colElement[i].style.width = ((100/imgsPerRound/100 - 0.05)*document.documentElement.clientWidth) ;
+      resizeImage(colElement[i])
       lstOfElements.push(imgElement);
     }
     for (i;i<colElement.length; i++){
