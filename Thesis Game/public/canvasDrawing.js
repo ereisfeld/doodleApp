@@ -1,11 +1,17 @@
 var currentDrawing = [];
 var canDraw = 1;
+const maxStrokes = 1;
+const submitBtnActivateColor = "14A76C"
+const submitBtnInActivateColor = document.querySelector("#doneDrawing").style.backgroundColor
 
 function undoStroke(){
     if(currentDrawing.length > 0){
         currentDrawing.pop();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawArray(currentDrawing);
+    }
+    if(currentDrawing.length == 0){
+        document.querySelector("#doneDrawing").style.backgroundColor = submitBtnInActivateColor;
     }
 }
 
@@ -68,12 +74,14 @@ window.addEventListener("load",() => {
     var mouseX,mouseY;
 
     function startPainting(e) {
+        if(currentDrawing.length >= maxStrokes) return;
         painting = true;
         currentStroke = [];
         draw(e)
     }
 
     function startPaintingTouch(e) {
+        if(currentDrawing.length >= maxStrokes) return;
         painting = true;
         currentStroke = [];
         drawTouch(e)
@@ -82,8 +90,12 @@ window.addEventListener("load",() => {
 
     function stopPainting(){
         painting = false;
+        if(currentDrawing.length >= maxStrokes) return;
         if(currentStroke.length >0){
         currentDrawing.push(currentStroke);
+        if(currentDrawing.length >0){
+            document.querySelector("#doneDrawing").style.backgroundColor = submitBtnActivateColor;
+        }
         currentStroke = [];
         ctx.beginPath();
         }
@@ -104,7 +116,7 @@ window.addEventListener("load",() => {
     }
 
     function draw(e){
-        if (!painting || !canDraw) return;
+        if (!painting || !canDraw || currentDrawing.length >= maxStrokes) return;
         getMousePos(e);
         ctx.lineWidth = 5;
         ctx.lineCap = "round";
@@ -130,7 +142,7 @@ window.addEventListener("load",() => {
     }
 
     function drawTouch(e){
-        if (!painting || !canDraw) return;
+        if (!painting || !canDraw || currentDrawing.length >= maxStrokes) return;
         ctx.lineWidth = 5;
         ctx.lineCap = "round";
 
