@@ -3,6 +3,7 @@ var canDraw = 1;
 const maxStrokes = 1;
 const submitBtnActivateColor = "14A76C"
 const submitBtnInActivateColor = document.querySelector("#doneDrawing").style.backgroundColor
+var touchScreen = false;
 
 function undoStroke(){
     if(currentDrawing.length > 0){
@@ -74,14 +75,38 @@ window.addEventListener("load",() => {
     var mouseX,mouseY;
 
     function startPainting(e) {
-        if(currentDrawing.length >= maxStrokes) return;
+        if(currentDrawing.length >= maxStrokes) {
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "red";
+            ctx.textAlign = "center";
+            if(language=="hebrew"){
+                ctx.fillText(maxStrokes.toString()+" הציור מוגבל לקו", canvas.width/2, 50);
+            }
+            else{
+                ctx.fillText("The stroke limit is "+maxStrokes.toString(), canvas.width/2, 50);
+            }
+            return;
+        }
+        touchScreen = false;
         painting = true;
         currentStroke = [];
         draw(e)
     }
 
     function startPaintingTouch(e) {
-        if(currentDrawing.length >= maxStrokes) return;
+        if(currentDrawing.length >= maxStrokes) {
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "red";
+            ctx.textAlign = "center";
+            if(language=="hebrew"){
+                ctx.fillText(maxStrokes.toString()+" הציור מוגבל לקו", canvas.width/2, 50);
+            }
+            else{
+                ctx.fillText("The stroke limit is "+maxStrokes.toString(), canvas.width/2, 50);
+            }           
+            return
+        };
+        touchScreen = true;
         painting = true;
         currentStroke = [];
         drawTouch(e)
@@ -116,7 +141,9 @@ window.addEventListener("load",() => {
     }
 
     function draw(e){
-        if (!painting || !canDraw || currentDrawing.length >= maxStrokes) return;
+        if (!painting || !canDraw || currentDrawing.length >= maxStrokes) {
+            return;
+    }
         getMousePos(e);
         ctx.lineWidth = 5;
         ctx.lineCap = "round";

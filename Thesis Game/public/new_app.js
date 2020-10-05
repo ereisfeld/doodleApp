@@ -146,6 +146,8 @@ function submitDrawing() {
   drawData["Drawing"] = drawing2dict(currentDrawing);
   drawData["timeStamp"] = firebase.firestore.FieldValue.serverTimestamp();
   drawData["random"] = Math.random() * maxRandomValue;
+  drawData["mail"] = userMail
+  drawData["touchscreen"] = touchScreen;
   console.log("writing doc with seed: ", drawData["random"])
   drawData["images"] = {
     0: urlArray[round][0]

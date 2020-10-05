@@ -1,5 +1,5 @@
 function downloadSetIMG(num, curArray, index) {
-  storageRef.child("aloi/" + num + "/" + num + "_i250.png").getDownloadURL().then(function (url) {
+  storageRef.child("subset/" + num + ".png").getDownloadURL().then(function (url) {
     // This can be downloaded directly:
     curArray[index] = url;
 
@@ -268,7 +268,7 @@ function downloadGuessingImages(rounds) {
 
 function downloadDrawingImages(rounds) {
   for (var i = 0; i < rounds; i++) {
-    var picIndexes = generateUniqueNumbers(1, 1000, imgsPerRound);
+    var picIndexes = generateUniqueNumbers(0, 50, imgsPerRound);
     var curUrls = [Math.floor(Math.random() * imgsPerRound)];
     for (var a = 0; a < imgsPerRound; a++) {
       curUrls.push(-1);
