@@ -3,7 +3,8 @@ var canDraw = 1;
 const maxStrokes = 1;
 const submitBtnActivateColor = "14A76C"
 const submitBtnInActivateColor = document.querySelector("#doneDrawing").style.backgroundColor
-var touchScreen = false;
+var touchScreen = ('ontouchstart' in document.documentElement);
+console.log("TouchScreen: ",touchScreen)
 
 function undoStroke(){
     if(currentDrawing.length > 0){
@@ -87,7 +88,6 @@ window.addEventListener("load",() => {
             }
             return;
         }
-        touchScreen = false;
         painting = true;
         currentStroke = [];
         draw(e)
@@ -106,7 +106,6 @@ window.addEventListener("load",() => {
             }           
             return
         };
-        touchScreen = true;
         painting = true;
         currentStroke = [];
         drawTouch(e)

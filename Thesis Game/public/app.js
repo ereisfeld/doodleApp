@@ -165,7 +165,7 @@
       for (var i=0;i<colElement.length; i++){
         colElement[i].style.display = "block";
       }
-      const picIndexes = generate5UniqueNumbers(1,1000);
+      const picIndexes = generate5UniqueNumbers(0,50); //upper bound is exclusive
 
       var imgElement1 = document.querySelector("#img1");
      downloadSetIMG(picIndexes[0],"#img1")

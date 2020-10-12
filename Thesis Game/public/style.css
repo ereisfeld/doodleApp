@@ -17,18 +17,20 @@ grid-row:3
 
 #doneDrawing{
     display: none;
-    width:60px;
+    width:calc(95vw - 650px);
     height:250px;
     background-color:#808080;
     color: #272727;
+    font-size: 25vw;
 }
 
 #undoStroke{
   display:none;
-  width:60px;
+  width:calc(95vw - 650px);
   height:250px;
   background-color: #14A76C;
   color: #272727;
+  font-size: 25vw;
 }
 
 #playAgain{

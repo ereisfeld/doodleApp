@@ -1,20 +1,12 @@
 var output = [];
 var picIndex = -1;
 const pathToDB = "C:\\Users\\Eyal\\Documents\\School\\datasets\\aloi\\"
-const numOfPicsPerRound = 3;
+const numOfPicsPerRound = 5;
 
-function handleIndex(i){
-  drawIndex(i)
-  setImages(getImgNumsForCurIndex(i))
-  document.querySelector("#right").innerHTML = " Right: "+output["right"][i]
-  document.querySelector("#wrong").innerHTML = " Wrong: "+output["wrong"][i]
-  document.querySelector("#total").innerHTML = " total: "+output["total"][i]
-}
 
 function drawIndex(i) {
   var curOutputData = output[i];
-  //var drawingArr = dict2drawing(curOutputData["Drawing"])
-  var drawingArr = dict2drawing(output["Drawing"][i])
+  var drawingArr = dict2drawing(curOutputData["Drawing"])
   drawArray(drawingArr)
 }
 
@@ -22,8 +14,8 @@ function setImages(imgNumsToSet) {
   for (var i = 0; i < imgNumsToSet.length; i++) {
     var imgElement = document.querySelector("#img" + (i + 1).toString());
     imgElement.src = pathToDB + imgNumsToSet[i] + "\\" + imgNumsToSet[i] + "_i250.png";
-    console.log("correct answer: ", output["images"][picIndex][0])
-    if (output["images"][picIndex][0] == i) {
+    console.log("correct answer: ", output[picIndex]["images"][0])
+    if (output[picIndex]["images"][0] == i) {
       imgElement.style.border = "thick solid red";
     } else {
       imgElement.style.border = "none";
@@ -34,7 +26,7 @@ function setImages(imgNumsToSet) {
 function getImgNumsForCurIndex(picIndex) {
   var imgNums = [];
   for (var i = 0; i < numOfPicsPerRound; i++) {
-    imgNums.push(output["images"][picIndex][(i + 1).toString()])
+    imgNums.push(output[picIndex]["images"][(i + 1).toString()])
   }
   return imgNums;
 }
@@ -51,8 +43,7 @@ function handleFileSelect(evt) {
     reader.onload = (function (theFile) {
       return function (e) {
         // Render thumbnail.
-        //output.push(JSON.parse(e.target.result))
-        output = JSON.parse(e.target.result)
+        output.push(JSON.parse(e.target.result))
       };
     })(f);
 
@@ -63,7 +54,8 @@ function handleFileSelect(evt) {
   drawFirstPicture = function () {
     setTimeout(() => {
       if (output.length > 0) {
-        handleIndex(picIndex)
+        drawIndex(picIndex);
+        setImages(getImgNumsForCurIndex(picIndex));
       } else {
         drawFirstPicture();
       }
@@ -80,7 +72,8 @@ function clickNext() {
     return;
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  handleIndex(picIndex)
+  drawIndex(picIndex);
+  setImages(getImgNumsForCurIndex(picIndex));
 }
 
 function clickPrev() {
@@ -91,7 +84,8 @@ function clickPrev() {
     return;
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  handleIndex(picIndex)
+  drawIndex(picIndex);
+  setImages(getImgNumsForCurIndex(picIndex));
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);

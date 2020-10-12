@@ -38,6 +38,12 @@
      vertical-align: middle;
   }
 
+  .results{
+    display: flex;
+     vertical-align: right;
+     font-size: 30px;
+  }
+
   .canvasHolder{
     grid-row:3
     }

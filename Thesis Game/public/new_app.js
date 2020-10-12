@@ -52,6 +52,13 @@ function initDrawMode() {
   canvasHolder.style.display = "inline-block";
   submitButton.style.display = "block";
   undoButton.style.display = "block";
+  if(!touchScreen){
+    console.log("no touchscreen detected")
+    submitButton.style.width = "100px";
+    submitButton.style.fontSize = "14px";
+    undoButton.style.width = "100px";
+    undoButton.style.fontSize = "14px";
+  }
   canvas.style.display = "flex";
   playAgainButton.style.display = "none";
   ctx.clearRect(0, 0, canvas.width, canvas.height);

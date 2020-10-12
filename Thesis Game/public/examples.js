@@ -26,7 +26,7 @@ function initHebrew() {
 language = getParameterByName("lang");
 initHebrew();
 
-var nextExampleButtonClick = function () {
+var nextExampleButtonClick = function () { //second non-interactive example
   //newGameButton.style.display = "inline-block";
   if (!userSignedIn) {
     authButtons.style.display = "inline-block";
@@ -35,15 +35,15 @@ var nextExampleButtonClick = function () {
     document.querySelector("#startGame").innerText = userName + " signed in. New game";
   }
   nextExampleButton.style.display = "none";
-  document.querySelector("#doodle1").src = "data\\exfootball.PNG";
-  document.querySelector("#doodle2").src = "data\\exfootballBad.png";
+  document.querySelector("#doodle1").src = "data\\good2.png";
+  document.querySelector("#doodle2").src = "data\\bad2.png";
   document.querySelector("#eximg1").className = "eximg";
   document.querySelector("#eximg4").className = "exBorder eximg";
   document.querySelector("#message").innerHTML = "<center>Example 2:</example>";
-  document.querySelector("#message3").innerHTML = "<center>The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is a football, rather than a basketball.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed football:</example>"
+  document.querySelector("#message3").innerHTML = "<center>The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is the rightmost one, rather than a the middle one.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed lamp:</example>"
   if (language == "hebrew") {
     document.querySelector("#message").innerHTML = "<center>דוגמא 2</example>";
-    document.querySelector("#message3").innerHTML = "<center> הציור <font color=\"#FF652F\">הימני</font> הוא <font color=\"#FF652F\">לא טוב</font> . אין בו מספיק מידע בשביל לקבוע שהתמונה המסומנת היא כדורגל, ולא כדורסל. <br> הציור <font color=\"#14A76C\">השמאלי</font> הוא <font color=\"#14A76C\">טוב.</font> הוא יצוג <font color=\"#14A76C\">מינימלי</font> שמאפשר להבחין שהתמונה במסגרת האדומה היא כדורגל.</center>"
+    document.querySelector("#message3").innerHTML = "<center> הציור <font color=\"#FF652F\">הימני</font> הוא <font color=\"#FF652F\">לא טוב</font> . אין בו מספיק מידע בשביל לקבוע שהתמונה המסומנת היא הימנית, ולא האמצעית. <br> הציור <font color=\"#14A76C\">השמאלי</font> הוא <font color=\"#14A76C\">טוב.</font> הוא יצוג <font color=\"#14A76C\">מינימלי</font> שמאפשר להבחין שהתמונה במסגרת האדומה היא המנורה הימנית.</center>"
     if (userSignedIn) {
       document.querySelector("#startGame").innerText = " מחובר. התחל משחק " + userName;
     }
@@ -94,9 +94,9 @@ var goToFirstInteactiveExample = function () {
   let doodle2 = document.querySelector("#doodle2")
   let doodle3 = document.querySelector("#doodle3")
   doodle3.style.display = "inline-block";
-  doodle1.src = "/data/cerealDoodle1.png"
-  doodle2.src = "/data/cerealDoodle2.png"
-  doodle3.src = "/data/cerealDoodle3.png";
+  doodle1.src = "/data/skateSketch.png"
+  doodle2.src = "/data/skateSketch2.png"
+  doodle3.src = "/data/skateSketch3.png";
   doodle1.style.border = "none";
   doodle2.style.border = "none";
   doodle3.style.border = "none";
@@ -107,19 +107,19 @@ var goToFirstInteactiveExample = function () {
 
   var imgElement1 = document.querySelector("#eximg1");
   imgElement1.style.border = "thick solid red";
-  imgElement1.src = "\\data\\excereal1.jpg"
+  imgElement1.src = "\\data\\skateboard2.jpg"
 
   var imgElement2 = document.querySelector("#eximg2");
   imgElement2.style.border = "none";
-  imgElement2.src = "\\data\\excereal2.jpg"
+  imgElement2.src = "\\data\\skateboard.jpg"
 
   var imgElement3 = document.querySelector("#eximg3");
   imgElement3.style.border = "none";
-  imgElement3.src = "/data/exbread.jpg"
+  imgElement3.src = "/data/trash1.jpg"
 
   var imgElement4 = document.querySelector("#eximg4");
   imgElement4.style.border = "none";
-  imgElement4.src = "/data/exdollar.jpg"
+  imgElement4.src = "/data/trash2.jpg"
 
   var imgElement5 = document.querySelector("#eximg5");
   imgElement5.style.display = "none";
@@ -147,33 +147,33 @@ var clickSketchFirstExample = function () {
 }
 
 var clickSketch11 = function () {
-  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the two cereal bowls.</center>";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the two skateboards.</center>";
   if (language == "hebrew") {
-    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין שתי הקערות.</center>";
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין שני הסקייטבורדים.</center>";
   }
   clickSketchFirstExample();
 }
 
 var clickSketch12 = function () {
   numberOfExamplesRight++;
-  document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between the two bowls, without adding too many unnecessary details</center>";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">CORRECT</font>. This sketch is enough to distinguish between the two skateboards, without adding too many unnecessary details. It's also obvious it's not either of the trash cans.</center>";
   if (language == "hebrew") {
-    document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">נכון. </font> הציור מספיק מספיק כדי להבחין בין שתי הקערות, בלי להכיל יותר מדי פרטים מיותרים.</center>"
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#14A76C\">נכון. </font> .הציור מספיק כדי להבחין בין שני הסקייטבורדים, בלי להכיל יותר מדי פרטים מיותרים. בנוסף הציור הוא בפירוש לא אחד מהפחים</center>"
   }
   clickSketchFirstExample();
 }
 var clickSketch13 = function () {
-  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has a lot of unnecessary details.</center>";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch refers to the correct picture, but has a some unnecessary details.</center>";
   if (language == "hebrew") {
-    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור מייצג את התמונה הנכונה, אבל כולל הרבה פרטים מיותרים</center>"
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור מייצג את התמונה הנכונה, אבל כולל פרטים מיותרים</center>"
   }
   clickSketchFirstExample();
 }
 
 var clickSketch21 = function () {
-  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to distinguish between the bread and the dollar bill.</center>";
+  document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">INCORRECT</font>. The sketch does not allow to between distinguish the trash can objects.</center>";
   if (language == "hebrew") {
-    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין השטר של הדולר, לבין הלחם</center>"
+    document.querySelector("#message3").innerHTML = "<center><font color=\"#FF652F\">לא נכון </font> הציור לא מאפשר להבדיל בין שני הפחים</center>"
   }
   clickSketchSecondExample();
 }
@@ -206,9 +206,9 @@ var goToSecondInteractiveExample = function () {
   let doodle2 = document.querySelector("#doodle2")
   let doodle3 = document.querySelector("#doodle3")
   doodle3.style.display = "inline-block";
-  doodle1.src = "/data/breadDoodle1.png"
-  doodle2.src = "/data/breadDoodle2.png"
-  doodle3.src = "/data/breadDoodle3.png";
+  doodle1.src = "/data/trashSketch1.png"
+  doodle2.src = "/data/trashSketch3.png"
+  doodle3.src = "/data/trashSketch2.png";
   doodle1.style.border = "none";
   doodle2.style.border = "none";
   doodle3.style.border = "none";
@@ -219,19 +219,19 @@ var goToSecondInteractiveExample = function () {
 
   var imgElement1 = document.querySelector("#eximg1");
   imgElement1.style.border = "none";
-  imgElement1.src = "\\data\\excereal1.jpg"
+  imgElement1.src = "\\data\\skateboard2.jpg"
 
   var imgElement2 = document.querySelector("#eximg2");
   imgElement2.style.border = "none";
-  imgElement2.src = "\\data\\excereal2.jpg"
+  imgElement2.src = "\\data\\skateboard.jpg"
 
   var imgElement3 = document.querySelector("#eximg3");
   imgElement3.style.border = "thick solid red";
-  imgElement3.src = "/data/exbread.jpg"
+  imgElement3.src = "/data/trash2.jpg"
 
   var imgElement4 = document.querySelector("#eximg4");
   imgElement4.style.border = "none";
-  imgElement4.src = "/data/exdollar.jpg"
+  imgElement4.src = "/data/trash1.jpg"
 
   var imgElement5 = document.querySelector("#eximg5");
   imgElement5.style.display = "none";
