@@ -20,6 +20,7 @@ function initHebrew() {
     document.querySelector("#secondInterExBtn").innerHTML = "לדוגמא הבאה";
     document.querySelector("#doneDrawing").innerHTML = "שלח";
     document.querySelector("#undoStroke").innerHTML = "מחק"
+    document.querySelector("#startGame").innerHTML = "משחק חדש"
   }
 }
 

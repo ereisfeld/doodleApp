@@ -1,6 +1,5 @@
 function downloadSetIMG(num, curArray, index) {
-  paddedNum = num < 10 ? "0"+num : num;
-  storageRef.child("shapenet/0" + paddedNum + ".jpg").getDownloadURL().then(function (url) {
+  storageRef.child("cropped/" + num + ".jpg").getDownloadURL().then(function (url) {
     // This can be downloaded directly:
     curArray[index] = url;
 

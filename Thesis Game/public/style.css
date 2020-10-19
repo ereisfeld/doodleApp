@@ -17,20 +17,20 @@ grid-row:3
 
 #doneDrawing{
     display: none;
-    width:calc(95vw - 650px);
+    width:calc(100vw - 700px);
     height:250px;
     background-color:#808080;
     color: #272727;
-    font-size: 25vw;
+    font-size: 40px;
 }
 
 #undoStroke{
   display:none;
-  width:calc(95vw - 650px);
+  width:calc(100vw - 700px);
   height:250px;
   background-color: #14A76C;
   color: #272727;
-  font-size: 25vw;
+  font-size: 40px;
 }
 
 #playAgain{
@@ -53,7 +53,7 @@ grid-row:3
     display: inline-grid;
     grid-template-columns: auto ;
     width: 95vw;
-    height: 95vh;
+    height: 80vh;
     grid-gap: 1px;
   }
 
@@ -131,7 +131,7 @@ grid-row:3
       display: none;
       border: none;
       margin: 0 auto;
-      font-size: 20px;
+      font-size: 25px;
       width: 50%;
   }
 
@@ -142,7 +142,7 @@ grid-row:3
     color: #272727;
     display: inline-block;
     border: none;
-    font-size: 20px;
+    font-size: 30px;
     display:none;
     margin: 0 auto;
     width: 50%;
@@ -155,7 +155,7 @@ grid-row:3
   color: #272727;
   display: inline-block;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   margin: 0 auto;
   width: 50%;
 }
@@ -200,6 +200,6 @@ grid-row:3
     display: none;
     border: none;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 30px;
     width: 50%;
   }
