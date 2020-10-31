@@ -32,9 +32,9 @@
         </div>
   
   <h1 id="message" style ="margin:0"><center>Instructions</center></h1>
-  <h1 id="message2" style ="margin:0"><center>-You will be shown 3 pictures, please draw the picture with the red frame. <br> Another person will then see the 3 pictures, and try to guess which one you drew.
-  <br><br> -the drawing must be as <font color="#FFE400">minimal</font> as possible, but still allow to guess which picture was drawn.
-<br>-Your drawing will consist of a single stroke</center></h1>
+  <h1 id="message2" style ="margin:0"><center>-You will be shown 3 pictures, one will have a <font color=\"FF0000\">red</font> frame. <br> Your task is to find a feature of the picture, that is <font color="#FFE400">minimal</font>, and can be used to best differentiate the picture in the red frame from the other two pictures.
+  <br><br> Choose the feature carefuly, you can only draw it using a single stroke.
+<br>-Another person will see your drawing, and be tasked to guess which of the pictures you drew.</center></h1>
   <div class="exampleRow" id="exampleImgRow">
       <div class="excolumn">
         <img src="data\bike.jpg" id="eximg1" style="max-width:100%; max-height:100%" class="exBorder eximg">
@@ -52,7 +52,7 @@
         <img src="data\screwdrivers.jpg" id="eximg5" style="max-width:100%; max-height:100%" class="eximg">
       </div>
   </div>
-  <h1 id="message3">The <font color="#14A76C">left</font> drawing is <font color="14A76C">good</font>, it's <font color="14A76C">minimal</font> and represents the leftmost picture clearly:
+  <h1 id="message3">The <font color="#14A76C">left</font> drawing is <font color="14A76C">good</font>, it contains a single <font color="14A76C">minimal</font> feature that differentiates the leftmost picture from the other two.
   <br> The <font color="#FF652F">right</font> drawing is <font color="#FF652F">not good.</font> It represents the leftmost picture clearly, but has a lot of <font color="#FF652F">unnecessary details</font></h1>
   <div class="exampleRow" id="exampleImgRow2">
     <div class="excolumnDoodle"><img src="data\good1.png" id = "doodle1" class="exDoodle"></div>
@@ -65,7 +65,7 @@
     <div id="loader">Loading...</div>
   </div>
 <button id="startGame">Start a new game</button>
-<button id="nextExample">Got it</button>
+<button id="nextExample">Next example</button>
 <button id="firstExample">OK</button>
 <button id="secondInterExBtn">Go to next example</button>
 <div class = "canvasHolder">

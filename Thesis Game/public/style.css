@@ -52,7 +52,8 @@ grid-row:3
 .gridContainer {
     display: inline-grid;
     grid-template-columns: auto ;
-    width: 95vw;
+    width: 95%;
+    width: 90vw;
     height: 80vh;
     grid-gap: 1px;
   }

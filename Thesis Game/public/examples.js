@@ -14,8 +14,15 @@ function getParameterByName(name, url) {
 
 function initHebrew() {
   if (language == "hebrew") {
+    var firstVar = "<font color=\"#FF0000\">אדום</font>"
+    var secondVar = "<font color=\"#FFE400\">מינימלי</font>"
+    document.querySelector("#message").dir = "rtl"
+    document.querySelector("#message2").dir = "rtl"
+    document.querySelector("#message3").dir = "rtl"
     document.querySelector("#message").innerHTML = "<center>הוראות</center>";
-    document.querySelector("#message2").innerHTML = document.querySelector("#message2").innerHTML = "<center>יוצגו לכם " + imgsPerRound + " תמונות. בבקשה ציירו את התמונה שמוקפת במסגרת אדומה. <br> אדם אחר יראה את " + imgsPerRound + " התמונות, וינסה לנחש איזה מהן ציירתם <br><br> הציור שלכם צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר לנחש מה ציירתם</center>" + "<center><br> הציור שלכם יכלול קו אחד בלבד</center>";
+    document.querySelector("#message2").innerHTML = `<center>יוצגו לכם ${imgsPerRound} תמונות. מתוכן אחת מוקפת ב${firstVar}. \
+    <br> עליכם למצוא מאפיין ${secondVar} שמזהה את התמונה שבמסגרת האדומה בצורה הטובה ביותר, ומבדיל אותה משתי התמונות האחרות. <br><br> בחרו בקפידה את המאפיין, עליכם לצייר אותו בקו אחד בלבד. <br>\
+    אדם אחר יראה את הציור שלכם, וינסה לנחש איזה מבין הציורים ציירתם.</center>`
     document.querySelector("#loginMsg").innerHTML = "כדי לשחק, בבקשה התחבר"
     document.querySelector("#secondInterExBtn").innerHTML = "לדוגמא הבאה";
     document.querySelector("#doneDrawing").innerHTML = "שלח";
@@ -74,9 +81,9 @@ var goToFirstExample = function () {
   document.querySelector("#message3").style.display = "inline"
   document.querySelector("#message").innerHTML = "<center>example 1:<br>given these 3 pictures, when asked to draw the red framed picture</center>"
   if (language == "hebrew") {
-    document.querySelector("#message").innerHTML = "<center>דוגמא 1 <br> בהינתן שלושלת התמונות הבאות, כאשר אתם מתבקשים לצייר את התמונה עם המסגרת האדומה:"
-    document.querySelector("#message3").innerHTML = "<center>הציור <font color=\"#14A76C\">השמאלי</font>  הוא <font color=\"#14A76C\">טוב</font>. הוא <font color=\"#14A76C\">מינימלי</font> ומייצג את התמונה השמאלית ביותר בבירור. <br> הציור <font color=\"#FF652F\">הימני</font>  הוא <font color=\"#FF652F\">לא טוב</font>. הוא מייצג את התמונה השמאלית ביותר בבירור, אבל מכיל הרבה <font color=\"#FF652F\">פרטים מיותרים</font></center>"
-    document.querySelector("#nextExample").innerText = "הבנתי"
+    document.querySelector("#message").innerHTML = "<center>דוגמא 1 <br> בהינתן שלושת התמונות הבאות, כאשר אתם מתבקשים לצייר את התמונה עם המסגרת האדומה:"
+    document.querySelector("#message3").innerHTML = "<center>הציור <font color=\"#14A76C\">השמאלי</font>  הוא <font color=\"#14A76C\">טוב</font>. הוא מכיל מאפיין יחיד ו<font color=\"#14A76C\">מינימלי</font> המבדיל את התמונה השמאלית מהשתיים האחרות בבירור. <br> הציור <font color=\"#FF652F\">הימני</font>  הוא <font color=\"#FF652F\">לא טוב</font>. הוא מבדיל את התמונה השמאלית מהשתיים האחרות בבירור, אבל מכיל הרבה <font color=\"#FF652F\">פרטים מיותרים</font></center>"
+    document.querySelector("#nextExample").innerText = "לדוגמא הבאה"
   }
   document.querySelector("#message2").style.display = "none";
   nextExampleButton.style.display = "inline-block"
@@ -86,9 +93,9 @@ var goToFirstExample = function () {
 var goToFirstInteactiveExample = function () {
   numberOfExamplesRight = 0;
   document.querySelector("#sheepSlot").style.display = "block";
-  document.querySelector("#message").innerHTML = "<center>Which sketch best represents the picture with the red frame? <br> The representation must be <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
+  document.querySelector("#message").innerHTML = "<center>Which sketch best differentiates the picture with the red frame from the other two? <br> The drawn feature must be <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
   if (language == "hebrew") {
-    document.querySelector("#message").innerHTML = "<center>איזה מהיצוגים הבאים מייצג את התמונה עם המסגרת האדומה ?<br> היצוג צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
+    document.querySelector("#message").innerHTML = "<center> איזה מהציורים הבאים מפריד את את התמונה עם המסגרת האדומה מהשתיים האחרות בצורה הטובה ביותר ?<br> המאפיין שצויר צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
   }
 
   let doodle1 = document.querySelector("#doodle1")
@@ -197,11 +204,6 @@ var clickSketch22 = function () {
 
 var goToSecondInteractiveExample = function () {
   document.querySelector("#secondInterExBtn").style.display = "none";
-
-  document.querySelector("#message").innerHTML = "<center>Which sketch best represents the picture with the red frame? <br> The representation must be both <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
-  if (language == "hebrew") {
-    document.querySelector("#message").innerHTML = "<center>איזה מהיצוגים הבאים מייצג את התמונה עם המסגרת האדומה ?<br> היצוג צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
-  }
 
   let doodle1 = document.querySelector("#doodle1")
   let doodle2 = document.querySelector("#doodle2")
