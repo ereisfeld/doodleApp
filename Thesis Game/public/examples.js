@@ -48,7 +48,7 @@ var nextExampleButtonClick = function () { //second non-interactive example
   document.querySelector("#eximg1").className = "eximg";
   document.querySelector("#eximg4").className = "exBorder eximg";
   document.querySelector("#message").innerHTML = "<center>Example 2:</example>";
-  document.querySelector("#message3").innerHTML = "<center>The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is the rightmost one, rather than a the middle one.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed lamp:</example>"
+  document.querySelector("#message3").innerHTML = "<center>The <font color=\"red\">right</font> drawing is <font color=\"red\">not good.</font> It does not contain enough details to determine the framed picture is the rightmost one, rather than the middle one.<br> The <font color=\"green\">left</font> drawing is <font color=\"green\">good</font>, it's a <font color=\"green\">minimal</font> representation that allows us to tell the picture is the red framed lamp.</example>"
   if (language == "hebrew") {
     document.querySelector("#message").innerHTML = "<center>דוגמא 2</example>";
     document.querySelector("#message3").innerHTML = "<center> הציור <font color=\"#FF652F\">הימני</font> הוא <font color=\"#FF652F\">לא טוב</font> . אין בו מספיק מידע בשביל לקבוע שהתמונה המסומנת היא הימנית, ולא האמצעית. <br> הציור <font color=\"#14A76C\">השמאלי</font> הוא <font color=\"#14A76C\">טוב.</font> הוא יצוג <font color=\"#14A76C\">מינימלי</font> שמאפשר להבחין שהתמונה במסגרת האדומה היא המנורה הימנית.</center>"

@@ -19,10 +19,10 @@ function undoStroke(){
 
 function drawing2dict(arr){
     resultDict = {};
-    for(var i=0; i<arr.length; i++){ //i is the stroke number
-        resultDict[i.toString()] = {}
+    for(var i=0; i<arr.length; i++){ 
+        resultDict[i.toString()] = [] //this is the current stroke
         for (var j=0; j<arr[i].length; j++){ //iterate over points in each stroke
-            resultDict[i.toString()][j.toString()]= {x: arr[i][j][0],y: arr[i][j][1]};           
+            resultDict[i.toString()].push({x: arr[i][j][0],y: arr[i][j][1]});           
         }
             }
     return resultDict;
@@ -33,7 +33,7 @@ function dict2drawing(dict){
     for (var i=0; i<Object.values(dict).length; i++){
         arr[i] = new Array(Object.values(dict[i.toString()]).length); //array with room for each point within a stroke
         for (var j=0; j<Object.values(dict[i.toString()]).length; j++){
-            arr[i][j] = [dict[i.toString()][j.toString()]["x"], dict[i.toString()][j.toString()]["y"]];
+            arr[i][j] = [dict[i.toString()][j]["x"], dict[i.toString()][j]["y"]];
         }
     }
     return arr;

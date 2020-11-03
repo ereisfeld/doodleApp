@@ -156,11 +156,11 @@ function submitDrawing() {
   drawData["mail"] = userMail
   drawData["touchscreen"] = touchScreen;
   console.log("writing doc with seed: ", drawData["random"])
-  drawData["images"] = {
-    0: urlArray[round][0]
-  } //,1:picIdArray[round][0],2:picIdArray[round][1],3:picIdArray[round][2],4:picIdArray[round][3],5:picIdArray[round][4]};
+  drawData["images"] = [
+    urlArray[round][0]
+  ] //,1:picIdArray[round][0],2:picIdArray[round][1],3:picIdArray[round][2],4:picIdArray[round][3],5:picIdArray[round][4]};
   for (var i = 1; i <= imgsPerRound; i++) {
-    drawData["images"][i.toString()] = picIdArray[round][i - 1];
+    drawData["images"].push(picIdArray[round][i - 1]);
   }
   drawData["imageSubmissionOrder"] = totalImagesDrawn
   drawData["exampleScore"] = numberOfExamplesRight;
