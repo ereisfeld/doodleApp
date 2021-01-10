@@ -36,6 +36,7 @@ grid-row:3
 #playAgain{
     display:none;
     grid-row:4;
+    font-size: 50px;
     padding: 14px 40px;
     background-color: rgb(141, 127, 0);
     color: #272727;
@@ -45,6 +46,7 @@ grid-row:3
   display:none;
   grid-row:4;
   padding: 14px 40px;
+  font-size: 40px;
   background-color: rgb(141, 127, 0);
   color: #272727;
 }
@@ -132,7 +134,7 @@ grid-row:3
       display: none;
       border: none;
       margin: 0 auto;
-      font-size: 25px;
+      font-size: 30px;
       width: 50%;
   }
 

@@ -1,6 +1,6 @@
 var output = [];
 var picIndex = -1;
-const pathToDB = "C:\\Users\\Eyal\\Documents\\School\\datasets\\aloi\\"
+const pathToDB = "\\media\\eyal\\Acer\\Users\\Eyal\\Documents\\School\\datasets\\shapeNet\\choices2\\cropped\\"
 const numOfPicsPerRound = 3;
 
 function handleIndex(i){
@@ -21,7 +21,7 @@ function drawIndex(i) {
 function setImages(imgNumsToSet) {
   for (var i = 0; i < imgNumsToSet.length; i++) {
     var imgElement = document.querySelector("#img" + (i + 1).toString());
-    imgElement.src = pathToDB + imgNumsToSet[i] + "\\" + imgNumsToSet[i] + "_i250.png";
+    imgElement.src = pathToDB + imgNumsToSet[i] + ".jpg";
     console.log("correct answer: ", output["images"][picIndex][0])
     if (output["images"][picIndex][0] == i) {
       imgElement.style.border = "thick solid red";

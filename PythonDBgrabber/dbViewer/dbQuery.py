@@ -4,7 +4,7 @@ import json
 import glob
 from datetime import date
 
-dbFiles = r"C:\Users\Eyal\Documents\School\Thesis\PythonDBgrabber\currentpulledDB"
+dbFiles = r"/home/eyal/Thesis/doodleApp/PythonDBgrabber/currentPulledDB/"
 df = pandas.DataFrame()
 dfFileOrigin = -1
 
@@ -38,13 +38,13 @@ def queryDataFrame(postFix):
     '''
     global df
     global dfFileOrigin
-    query = "mail == ''"
+    #query = "mail == ''"
     #df = df.query(query)
     df=df.dropna()
     df.to_excel(dfFileOrigin+"_"+postFix+".xlsx")
     df.to_json(dfFileOrigin+"_"+postFix+".json")
 
-#buildDataframe()
-pathToExcel = os.path.join("./outputDB/","11_08_2020")
-loadDataframe(pathToExcel)
-queryDataFrame("emptyMail")
+buildDataframe()
+#pathToExcel = os.path.join("./outputDB/","11_08_2020")
+#loadDataframe(pathToExcel)
+#queryDataFrame("emptyMail")

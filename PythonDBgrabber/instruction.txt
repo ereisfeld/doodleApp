@@ -1,3 +1,5 @@
 setenv to:
- $env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\Eyal\Documents\School\Thesis\PythonDBgrabber\DoodleApp-ebd95441edcf.json"
+ $env:GOOGLE_APPLICATION_CREDENTIALS="/home/eyal/Thesis/doodleApp/PythonDBgrabber/DoodleApp-ebd95441edcf.json"
 (with powershell)
+
+export GOOGLE_APPLICATION_CREDENTIALS="/home/eyal/Thesis/doodleApp/PythonDBgrabber/DoodleApp-ebd95441edcf.json"

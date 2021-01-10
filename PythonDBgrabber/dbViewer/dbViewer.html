@@ -4,7 +4,6 @@
 </head>
 <body>
 <div class="gridContainer" style="max-height: 100vh">
-    <input type="file" id="files" name="files[]" multiple />
     <div class="gridContainer" style="max-height: 100vh">
         <div class="row" id="imgRow">
                 <div class="column">
@@ -26,6 +25,7 @@
         <div class = "canvasHolder">
             <canvas id="canvas"></canvas>
             <div class="canvasButtons">
+                <input type="file" style="border: solid 1px red" id="files" name="files[]" multiple />
                 <button id="nextBtn">Next</button>
                 <button id="prevBtn">Prev</button>
             </div>
