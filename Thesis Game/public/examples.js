@@ -93,9 +93,9 @@ var goToFirstExample = function () {
 var goToFirstInteactiveExample = function () {
   numberOfExamplesRight = 0;
   document.querySelector("#sheepSlot").style.display = "block";
-  document.querySelector("#message").innerHTML = "<center>Which sketch best differentiates the picture with the red frame from the other two? <br> The drawn feature must be <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
+  document.querySelector("#message").innerHTML = "<center>Which sketch best differentiates the picture with the red frame from the other three? <br> The drawn feature must be <font color=\"#FFE400\">minimal</font>, but still allow to tell which picture was drawn.</center>"
   if (language == "hebrew") {
-    document.querySelector("#message").innerHTML = "<center> איזה מהציורים הבאים מפריד את את התמונה עם המסגרת האדומה מהשתיים האחרות בצורה הטובה ביותר ?<br> המאפיין שצויר צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
+    document.querySelector("#message").innerHTML = "<center> איזה מהציורים הבאים מפריד את את התמונה עם המסגרת האדומה מהשלוש האחרות בצורה הטובה ביותר ?<br> המאפיין שצויר צריך להיות <font color=\"#FFE400\">מינימלי</font>, אבל עדיין לאפשר להבין איזה מהתמונות צויירה.</center>"
   }
 
   let doodle1 = document.querySelector("#doodle1")
